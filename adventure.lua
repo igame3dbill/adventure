@@ -1,6 +1,15 @@
 --start AdventureLib (c)2009,2010 Robin Wellner
 --additional Copyright (c) 2010 William Griffin
---use as future source of AdventureLib
+
+ChangesLog=[["04042010
+ added exits command returns doors in q room
+ added look inventory object
+ added formatted commands list and action
+ created FLUID stack to house Lib
+ added console for self contained adventure.
+ drag and drop files to Lib or Console to run
+ added actions for directions without `go` and shortcuts n = north,etc
+]]
 
 
 --pass; 
@@ -345,12 +354,4 @@ function rungame()
 	end
 end
 -- END AdventureLib
-ChangesLog=[["04042010
- added exits command returns doors in q room
- added look inventory object
- added formatted commands list and action
- created FLUID stack to house Lib
- added console for self contained adventure.
- drag and drop files to Lib or Console to run
- added actions for directions without `go` and shortcuts n = north,etc
-]]
+
