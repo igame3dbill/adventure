@@ -185,7 +185,7 @@ elseif param == "n" then param = "north"
 elseif param == "s" then param = "south"
 elseif param == "i" then param = "in"
 elseif param == "o" then param = "out"
-elseif param == "i" then param = "up"
+elseif param == "u" then param = "up"
 elseif param == "d" then param = "down"
 end
 end
