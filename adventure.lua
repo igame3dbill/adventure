@@ -9,8 +9,8 @@ ChangesLog=[["04042010
  added console for self contained adventure.
  drag and drop files to Lib or Console to run
  added actions for directions without `go` and shortcuts n = north,etc
+04192010 fixed shortcuts
 ]]
-
 
 --pass; 
 -- returns :nil; 
@@ -67,6 +67,11 @@ player = {inventory = {}}
 --info
 function info()
 print(room.current.name)
+
+for i in string.gmatch(room.current.description,"%s%s") do
+room.current.description = string.gsub(room.current.description,"%s%s","\t\n")
+end
+
 	print(room.current.description)
 end
 --split
@@ -111,8 +116,7 @@ if not _NODEFAULT then
 		   },
 	look = {"look at (.+)",
 				"room",
-				"l",
-			"look (.+)",
+				"look (.+)",
 			"describe (.+)",
 			"examine (.+)",
 		   },
@@ -172,6 +176,20 @@ commandslist=""
  end
 --actions.door
 function actions.door(param)
+if string.len(param) == 1 then
+if param == "l" then param = "left"
+elseif param == "r" then param = "right"
+elseif param == "e" then param = "east"
+elseif param == "w" then param = "west"
+elseif param == "n" then param = "north"
+elseif param == "s" then param = "south"
+elseif param == "i" then param = "in"
+elseif param == "o" then param = "out"
+elseif param == "i" then param = "up"
+elseif param == "d" then param = "down"
+end
+end
+
 		local newroomdir = room.current.door[param]
 		if not newroomdir then
 			for k,v in pairs(room.current.door) do
@@ -292,7 +310,7 @@ end
 function doaction(action, param)
 	actions[action](param)
 end
---parse
+-- parse
 function parse(text)
 	local text = text:lower()
 	if text == 'exit' then return 'exit' end
@@ -309,10 +327,9 @@ function parse(text)
 		notfoundhandler(text)
 	end
 end
--- rungame() 
---rungame; 
---parse commandline input; 
--- ;
+-- rungame; 
+-- parse commandline input; 
+
 function rungame()
 
 	if gamename then print(gamename) end
@@ -353,5 +370,3 @@ function rungame()
 	
 	end
 end
--- END AdventureLib
-
